@@ -4,7 +4,6 @@ sealed class Failure {
   Failure(this.message);
 }
 
-class InvalidCepFailure extends Failure{
+class InvalidCepFailure extends Failure {
   InvalidCepFailure(super.message);
 }
-
