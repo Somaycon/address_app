@@ -3,6 +3,7 @@ import 'package:address_app/features/home/data/datasources/address_datasource.da
 import 'package:address_app/features/home/data/repositories/address_repository_impl.dart';
 import 'package:address_app/features/home/domain/repositories/address_repository.dart';
 import 'package:address_app/features/home/domain/usecase/get_address_usecase.dart';
+import 'package:address_app/features/home/presentation/controller/home_controller.dart';
 import 'package:address_app/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -19,6 +20,7 @@ class HomeModule extends Module {
     );
     i.addLazySingleton(AddressDatasource.new);
     i.addLazySingleton<AddressRepository>(AddressRepositoryImpl.new);
+    i.addLazySingleton(HomeController.new);
     super.binds(i);
   }
 
