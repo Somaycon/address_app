@@ -8,7 +8,7 @@ class HomeModule extends Module {
     i.addLazySingleton(
       () => GetAddressUsecase.new,
     );
-    super.binds(i);
+    super.binds(i); 
   }
 
   @override
