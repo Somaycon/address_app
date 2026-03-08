@@ -9,6 +9,14 @@ class GetAddressUsecase {
   GetAddressUsecase({required this.addressRepository});
 
   Future<Either<Failure, AddressEntity>> call(String cep) {
-    return addressRepository.getAddress(cep);
+    final cleanedCep = cep.replaceAll(RegExp(r'\D'), '');
+    if (cleanedCep.length != 8) {
+      return Future.value(
+        Left(
+          InvalidCepFailure('CEP inválido. O CEP deve conter 8 dígitos.'),
+        ),
+      );
+    }
+    return Future.value(addressRepository.getAddress(cleanedCep));
   }
 }
