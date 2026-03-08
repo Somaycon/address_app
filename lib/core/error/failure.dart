@@ -7,3 +7,11 @@ sealed class Failure {
 class InvalidCepFailure extends Failure {
   InvalidCepFailure(super.message);
 }
+
+class AddressNotFoundFailure extends Failure {
+  AddressNotFoundFailure(super.message);
+}
+
+class ServerFailure extends Failure {
+  ServerFailure(super.message);
+}
