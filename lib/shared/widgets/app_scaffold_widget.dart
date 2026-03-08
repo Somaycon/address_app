@@ -13,7 +13,10 @@ class AppScaffoldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: body,
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: body,
+      ),
       bottomNavigationBar: AppBottomNavigationBarWidget(
         currentIndex: currentIndex,
       ),
