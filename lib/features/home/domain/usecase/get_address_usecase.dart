@@ -13,10 +13,10 @@ class GetAddressUsecase {
     if (cleanedCep.length != 8) {
       return Future.value(
         Left(
-          InvalidCepFailure('CEP inválido. O CEP deve conter 8 dígitos.'),
+          InvalidCepFailure('O CEP deve conter 8 dígitos.'),
         ),
       );
     }
-    return Future.value(addressRepository.getAddress(cleanedCep));
+    return addressRepository.getAddress(cleanedCep);
   }
 }
