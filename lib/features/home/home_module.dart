@@ -18,7 +18,7 @@ class HomeModule extends Module {
     i.addLazySingleton(
       () => GetAddressUsecase(addressRepository: i()),
     );
-    i.addLazySingleton(AddressDatasource.new);
+    i.addLazySingleton(() => AddressDatasource(apiClient: i()));
     i.addLazySingleton<AddressRepository>(AddressRepositoryImpl.new);
     i.addLazySingleton(HomeController.new);
     super.binds(i);
