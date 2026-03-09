@@ -16,7 +16,7 @@ class HomeModule extends Module {
   @override
   void binds(Injector i) {
     i.addLazySingleton(
-      () => GetAddressUsecase.new,
+      () => GetAddressUsecase(addressRepository: i()),
     );
     i.addLazySingleton(AddressDatasource.new);
     i.addLazySingleton<AddressRepository>(AddressRepositoryImpl.new);
