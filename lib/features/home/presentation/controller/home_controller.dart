@@ -1,10 +1,17 @@
+import 'package:address_app/features/home/domain/usecase/get_address_usecase.dart';
+import 'package:address_app/features/home/presentation/states/home_states.dart';
 import 'package:flutter/cupertino.dart';
 
 class HomeController {
-  final TextEditingController cepController = TextEditingController();
+  final GetAddressUsecase getAddressUsecase;
 
-  int get cepDigitsLength =>
-      cepController.text.replaceAll(RegExp(r'\D'), '').length;
+  final TextEditingController cepController = TextEditingController();
+  final ValueNotifier<int> cepDigitsLength = ValueNotifier(0);
+  final ValueNotifier<HomeStates> homeStates = ValueNotifier(
+    HomeInitialState(),
+  );
+
+  HomeController({required this.getAddressUsecase});
 
   void onCepChanged(String value) {
     final digits = value.replaceAll(RegExp(r'\D'), '');
@@ -14,11 +21,18 @@ class HomeController {
         ? '${limitedDigits.substring(0, 5)}-${limitedDigits.substring(5)}'
         : limitedDigits;
 
-    if (formattedCep == cepController.text) return;
+    cepDigitsLength.value = limitedDigits.length;
+
+    if (formattedCep == cepController.value.text) return;
 
     cepController.value = TextEditingValue(
       text: formattedCep,
       selection: TextSelection.collapsed(offset: formattedCep.length),
     );
+  }
+
+  void dispose() {
+    cepController.dispose();
+    cepDigitsLength.dispose();
   }
 }
