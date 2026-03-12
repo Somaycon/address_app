@@ -1,6 +1,10 @@
 import 'package:address_app/features/home/presentation/controller/home_controller.dart';
 import 'package:address_app/features/home/presentation/states/home_states.dart';
-import 'package:address_app/features/home/presentation/widgets/home_initial_widget.dart';
+import 'package:address_app/features/home/presentation/widgets/home_body_widget.dart';
+import 'package:address_app/features/home/presentation/widgets/home_error_widget.dart';
+import 'package:address_app/features/home/presentation/widgets/home_header_widget.dart';
+import 'package:address_app/features/home/presentation/widgets/home_loaded_widget.dart';
+import 'package:address_app/features/home/presentation/widgets/home_loading_widget.dart';
 import 'package:address_app/shared/widgets/app_scaffold_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -24,18 +28,26 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return AppScaffoldWidget(
       currentIndex: 0,
-      body: ValueListenableBuilder(
-        valueListenable: controller.homeStates,
-        builder: (context, value, child) => switch (value) {
-          HomeInitialState() => HomeInitialWidget(
-            controller: controller,
+      body: Column(
+        children: [
+          ValueListenableBuilder(
+            valueListenable: controller.cepDigitsLength,
+            builder: (context, value, child) {
+              return HomeHeaderWidget(controller: controller);
+            },
           ),
-          HomeLoadingState() => Center(
-            child: CircularProgressIndicator(),
+          ValueListenableBuilder(
+            valueListenable: controller.homeStates,
+            builder: (context, state, child) => switch (state) {
+              HomeInitialState() => HomeBodyWidget(),
+              HomeLoadingState() => HomeLoadingWidget(),
+              HomeLoadedState() => HomeLoadedWidget(address: state.address),
+              HomeErrorState() => HomeErrorWidget(
+                message: state.message,
+              ),
+            },
           ),
-          HomeLoadedState() => SizedBox.shrink(),
-          HomeErrorState() => SizedBox.shrink(),
-        },
+        ],
       ),
     );
   }

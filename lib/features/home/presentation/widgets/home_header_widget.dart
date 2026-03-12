@@ -1,4 +1,5 @@
 import 'package:address_app/features/home/presentation/controller/home_controller.dart';
+import 'package:address_app/features/home/presentation/states/home_states.dart';
 import 'package:address_app/shared/ui/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -103,18 +104,47 @@ class HomeHeaderWidget extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            LinearProgressIndicator(
-              value: controller.cepDigitsLength.value / 8,
-              color: controller.cepDigitsLength.value == 8
-                  ? AppColors.green
-                  : AppColors.darkBlue,
+            ValueListenableBuilder<int>(
+              valueListenable: controller.cepDigitsLength,
+              builder: (context, digitsLength, _) {
+                return ValueListenableBuilder<HomeStates>(
+                  valueListenable: controller.homeStates,
+                  builder: (context, state, _) {
+                    final indicatorColor = state is HomeErrorState
+                        ? AppColors.red
+                        : digitsLength == 8
+                        ? AppColors.green
+                        : AppColors.darkBlue;
+
+                    return LinearProgressIndicator(
+                      value: digitsLength / 8,
+                      color: indicatorColor,
+                    );
+                  },
+                );
+              },
             ),
             SizedBox(height: 3),
-            Text(
-              '${controller.cepDigitsLength.value}/8 dígitos',
-              style: TextStyle(
-                color: AppColors.lightGrey,
-                fontSize: 10,
+            ValueListenableBuilder(
+              valueListenable: controller.homeStates,
+              builder: (context, value, child) {
+                final isError = value is HomeErrorState;
+                return Text(
+                  isError
+                      ? 'CEP inválido. Verifique e tente novamente.'
+                      : '${controller.cepDigitsLength.value}/8 dígitos',
+                  style: TextStyle(
+                    color: isError ? AppColors.red : AppColors.lightGrey,
+                    fontSize: 10,
+                  ),
+                );
+              },
+              child: Text(
+                '${controller.cepDigitsLength.value}/8 dígitos',
+                style: TextStyle(
+                  color: AppColors.lightGrey,
+                  fontSize: 10,
+                ),
               ),
             ),
           ],
