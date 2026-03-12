@@ -16,6 +16,7 @@ class AddressRepositoryMock implements AddressRepository {
           bairro: 'Bairro Exemplo',
           uf: 'SP',
           estado: 'São Paulo',
+          localidade: 'São Paulo',
         ),
       ),
     );
@@ -40,6 +41,7 @@ void main() {
         expect(r.bairro, 'Bairro Exemplo');
         expect(r.uf, 'SP');
         expect(r.estado, 'São Paulo');
+        expect(r.localidade, 'São Paulo');
       },
     );
   });
