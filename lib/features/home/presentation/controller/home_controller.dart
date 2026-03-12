@@ -13,7 +13,7 @@ class HomeController {
 
   HomeController({required this.getAddressUsecase});
 
-  void onCepChanged(String value) {
+  Future<void> onCepChanged(String value) async {
     final digits = value.replaceAll(RegExp(r'\D'), '');
     final limitedDigits = digits.length > 8 ? digits.substring(0, 8) : digits;
 
@@ -23,12 +23,23 @@ class HomeController {
 
     cepDigitsLength.value = limitedDigits.length;
 
-    if (formattedCep == cepController.value.text) return;
-
-    cepController.value = TextEditingValue(
-      text: formattedCep,
-      selection: TextSelection.collapsed(offset: formattedCep.length),
-    );
+    if (formattedCep != cepController.value.text) {
+      cepController.value = TextEditingValue(
+        text: formattedCep,
+        selection: TextSelection.collapsed(offset: formattedCep.length),
+      );
+    }
+    if (limitedDigits.length == 8) {
+      homeStates.value = HomeLoadingState();
+      final response = await getAddressUsecase(limitedDigits);
+      response.fold(
+        (failure) =>
+            homeStates.value = HomeErrorState(message: failure.message),
+        (address) => homeStates.value = HomeLoadedState(address: address),
+      );
+    } else {
+      homeStates.value = HomeInitialState();
+    }
   }
 
   void dispose() {
