@@ -22,7 +22,12 @@ class AddressDatasource {
         );
       }
       if (response.statusCode == 200) {
-        if (response.data['erro'] == true) {
+        final errorValue = response.data['erro'];
+        final hasError =
+            errorValue == true ||
+            (errorValue is String && errorValue.toLowerCase() == 'true');
+
+        if (hasError) {
           return Left(AddressNotFoundFailure('CEP não encontrado.'));
         }
         return Right(AddressModel.fromJson(response.data));
