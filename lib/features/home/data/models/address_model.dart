@@ -7,6 +7,7 @@ class AddressModel extends AddressEntity {
     required super.bairro,
     required super.uf,
     required super.estado,
+    required super.localidade,
   });
   factory AddressModel.fromJson(Map<String, dynamic> json) {
     return AddressModel(
@@ -15,6 +16,7 @@ class AddressModel extends AddressEntity {
       bairro: json['bairro'] ?? '',
       uf: json['uf'] ?? '',
       estado: json['estado'] ?? '',
+      localidade: json['localidade'] ?? '',
     );
   }
 }
