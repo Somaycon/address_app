@@ -37,7 +37,7 @@ class AddressCardWidget extends StatelessWidget {
                 Icon(Icons.location_on_outlined, color: Colors.white),
                 SizedBox(width: 8),
                 Text(
-                  'CEP ${address.cep}',
+                  'CEP ${address.postalCode}',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -65,7 +65,7 @@ class AddressCardWidget extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 2),
                   child: Text(
-                    address.logadouro,
+                    address.street,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -89,7 +89,7 @@ class AddressCardWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          address.bairro,
+                          address.neighborhood,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
@@ -110,7 +110,7 @@ class AddressCardWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            address.uf,
+                            address.stateCode,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
@@ -131,7 +131,7 @@ class AddressCardWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  address.localidade,
+                  address.city,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),

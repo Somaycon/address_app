@@ -11,12 +11,12 @@ class AddressRepositoryMock implements AddressRepository {
     return Future.value(
       Right(
         AddressEntity(
-          cep: '12345-678',
-          logadouro: 'Rua Exemplo',
-          bairro: 'Bairro Exemplo',
-          uf: 'SP',
-          estado: 'São Paulo',
-          localidade: 'São Paulo',
+          postalCode: '12345-678',
+          street: 'Rua Exemplo',
+          neighborhood: 'Bairro Exemplo',
+          stateCode: 'SP',
+          state: 'São Paulo',
+          city: 'São Paulo',
         ),
       ),
     );
@@ -36,12 +36,12 @@ void main() {
         );
       },
       (r) {
-        expect(r.cep, '12345-678');
-        expect(r.logadouro, 'Rua Exemplo');
-        expect(r.bairro, 'Bairro Exemplo');
-        expect(r.uf, 'SP');
-        expect(r.estado, 'São Paulo');
-        expect(r.localidade, 'São Paulo');
+        expect(r.postalCode, '12345-678');
+        expect(r.street, 'Rua Exemplo');
+        expect(r.neighborhood, 'Bairro Exemplo');
+        expect(r.stateCode, 'SP');
+        expect(r.state, 'São Paulo');
+        expect(r.city, 'São Paulo');
       },
     );
   });
