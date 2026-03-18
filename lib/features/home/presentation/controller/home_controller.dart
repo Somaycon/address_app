@@ -10,7 +10,15 @@ class HomeController {
   final ValueNotifier<HomeStates> homeStates = ValueNotifier(
     HomeInitialState(),
   );
-
+  final labels = [
+    'Casa',
+    'Trabalho',
+    'Academia',
+    'Escola',
+    'Supermercado',
+    'Outro',
+  ];
+  final ValueNotifier<String?> selectedLabel = ValueNotifier(null);
   HomeController({required this.getAddressUsecase});
 
   Future<void> onCepChanged(String value) async {
@@ -40,6 +48,14 @@ class HomeController {
     } else {
       homeStates.value = HomeInitialState();
     }
+  }
+
+  void toggleLabel(String label) {
+    selectedLabel.value = selectedLabel.value == label ? null : label;
+  }
+
+  void onSaveAddress() {
+    // Verificar Qual botão foi pressionado (Salvar ou Meus Endereços)
   }
 
   void dispose() {

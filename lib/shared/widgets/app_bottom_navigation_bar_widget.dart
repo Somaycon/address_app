@@ -1,5 +1,6 @@
 import 'package:address_app/shared/ui/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class AppBottomNavigationBarWidget extends StatelessWidget {
   final int currentIndex;
@@ -13,8 +14,6 @@ class AppBottomNavigationBarWidget extends StatelessWidget {
         return AppColors.darkBlue;
       case 1:
         return AppColors.yellow;
-      case 2:
-        return AppColors.darkBlue;
       default:
         return AppColors.darkBlue;
     }
@@ -44,32 +43,48 @@ class AppBottomNavigationBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      currentIndex: currentIndex,
-      type: BottomNavigationBarType.fixed,
-      selectedItemColor: _colorByIndex(currentIndex),
-      unselectedItemColor: Theme.of(context).colorScheme.onSurfaceVariant,
-      items: [
-        BottomNavigationBarItem(
-          icon: _buildNavIcon(context, Icons.search, active: false),
-          activeIcon: _buildNavIcon(context, Icons.search, active: true),
-          label: 'Buscar',
-        ),
-        BottomNavigationBarItem(
-          icon: _buildNavIcon(context, Icons.star_border, active: false),
-          activeIcon: _buildNavIcon(context, Icons.star, active: true),
-          label: 'Favoritos',
-        ),
-        BottomNavigationBarItem(
-          icon: _buildNavIcon(
-            context,
-            Icons.location_on_outlined,
-            active: false,
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.1),
+            blurRadius: 8,
+            offset: Offset(0, -4),
           ),
-          activeIcon: _buildNavIcon(context, Icons.location_on, active: true),
-          label: 'Meus Endereços',
-        ),
-      ],
+        ],
+      ),
+      child: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        currentIndex: currentIndex,
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: _colorByIndex(currentIndex),
+        unselectedItemColor: Theme.of(context).colorScheme.onSurfaceVariant,
+        onTap: (index) {
+          if (index == currentIndex) return;
+
+          switch (index) {
+            case 0:
+              Modular.to.navigate('/');
+              break;
+            case 1:
+              Modular.to.navigate('/favorites');
+              break;
+          }
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: _buildNavIcon(context, Icons.search, active: false),
+            activeIcon: _buildNavIcon(context, Icons.search, active: true),
+            label: 'Buscar',
+          ),
+          BottomNavigationBarItem(
+            icon: _buildNavIcon(context, Icons.star_border, active: false),
+            activeIcon: _buildNavIcon(context, Icons.star, active: true),
+            label: 'Favoritos',
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,10 +1,10 @@
 import 'package:address_app/features/home/presentation/controller/home_controller.dart';
 import 'package:address_app/features/home/presentation/states/home_states.dart';
-import 'package:address_app/features/home/presentation/widgets/home_body_widget.dart';
-import 'package:address_app/features/home/presentation/widgets/home_error_widget.dart';
-import 'package:address_app/features/home/presentation/widgets/home_header_widget.dart';
-import 'package:address_app/features/home/presentation/widgets/home_loaded_widget.dart';
-import 'package:address_app/features/home/presentation/widgets/home_loading_widget.dart';
+import 'package:address_app/features/home/presentation/pages/widgets/home_body_widget.dart';
+import 'package:address_app/features/home/presentation/pages/widgets/home_error_widget.dart';
+import 'package:address_app/features/home/presentation/pages/widgets/home_header_widget.dart';
+import 'package:address_app/features/home/presentation/pages/widgets/home_loaded_widget.dart';
+import 'package:address_app/features/home/presentation/pages/widgets/home_loading_widget.dart';
 import 'package:address_app/shared/widgets/app_scaffold_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -41,7 +41,10 @@ class _HomePageState extends State<HomePage> {
             builder: (context, state, child) => switch (state) {
               HomeInitialState() => HomeBodyWidget(),
               HomeLoadingState() => HomeLoadingWidget(),
-              HomeLoadedState() => HomeLoadedWidget(address: state.address),
+              HomeLoadedState() => HomeLoadedWidget(
+                address: state.address,
+                controller: controller,
+              ),
               HomeErrorState() => HomeErrorWidget(
                 message: state.message,
               ),

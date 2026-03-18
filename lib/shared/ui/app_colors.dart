@@ -10,6 +10,7 @@ class AppColors {
   static const yellow = Color(0xffFE9A00);
   static const brown = Color(0xffBB4D00);
   static const grey = Color(0xff6A7282);
+  static const secundaryLightGrey = Color(0xffE5E7EB);
   static const lightGrey = Color(0xff99A1AF);
   static const extraLightGrey = Color(0xffD1D5DC);
   static const lightPink = Color(0xffFFA2A2);
