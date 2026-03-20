@@ -1,11 +1,14 @@
 import 'package:address_app/features/app_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
   runApp(
     ModularApp(
-      module: AppModule(),
+      module: AppModule(sharedPreferences: prefs),
       child: MainApp(),
     ),
   );
