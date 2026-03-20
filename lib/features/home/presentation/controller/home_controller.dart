@@ -61,7 +61,6 @@ class HomeController {
   }
 
   Future<void> onSaveAddress(AddressEntity address) async {
-    print(address);
     return await addFavoritesUsecase(address);
   }
 

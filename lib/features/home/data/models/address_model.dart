@@ -1,7 +1,7 @@
 import 'package:address_app/features/home/domain/entities/address_entity.dart';
 
 class AddressModel extends AddressEntity {
-  AddressModel({
+  const AddressModel({
     required super.postalCode,
     required super.street,
     required super.neighborhood,
