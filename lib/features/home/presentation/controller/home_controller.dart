@@ -1,9 +1,12 @@
+import 'package:address_app/features/favorites/domain/usecase/add_favorites_usecase.dart';
+import 'package:address_app/features/home/domain/entities/address_entity.dart';
 import 'package:address_app/features/home/domain/usecase/get_address_usecase.dart';
 import 'package:address_app/features/home/presentation/states/home_states.dart';
 import 'package:flutter/cupertino.dart';
 
 class HomeController {
   final GetAddressUsecase getAddressUsecase;
+  final AddFavoritesUsecase addFavoritesUsecase;
 
   final TextEditingController cepController = TextEditingController();
   final ValueNotifier<int> cepDigitsLength = ValueNotifier(0);
@@ -19,7 +22,10 @@ class HomeController {
     'Outro',
   ];
   final ValueNotifier<String?> selectedLabel = ValueNotifier(null);
-  HomeController({required this.getAddressUsecase});
+  HomeController({
+    required this.getAddressUsecase,
+    required this.addFavoritesUsecase,
+  });
 
   Future<void> onCepChanged(String value) async {
     final digits = value.replaceAll(RegExp(r'\D'), '');
@@ -54,8 +60,9 @@ class HomeController {
     selectedLabel.value = selectedLabel.value == label ? null : label;
   }
 
-  void onSaveAddress() {
-    // Verificar Qual botão foi pressionado (Salvar ou Meus Endereços)
+  Future<void> onSaveAddress(AddressEntity address) async {
+    print(address);
+    return await addFavoritesUsecase(address);
   }
 
   void dispose() {

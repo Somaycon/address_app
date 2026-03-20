@@ -19,4 +19,15 @@ class AddressModel extends AddressEntity {
       city: json['localidade'] ?? '',
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'cep': postalCode,
+      'logradouro': street,
+      'bairro': neighborhood,
+      'uf': stateCode,
+      'estado': state,
+      'localidade': city,
+    };
+  }
 }

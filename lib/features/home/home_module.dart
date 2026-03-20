@@ -1,4 +1,5 @@
 import 'package:address_app/features/app_module.dart';
+import 'package:address_app/features/favorites/favorites_module.dart';
 import 'package:address_app/features/home/data/datasources/address_datasource.dart';
 import 'package:address_app/features/home/data/repositories/address_repository_impl.dart';
 import 'package:address_app/features/home/domain/repositories/address_repository.dart';
@@ -10,7 +11,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 class HomeModule extends Module {
   @override
   List<Module> get imports => [
-    AppModule(),
+    AppModule(sharedPreferences: Modular.get()),
+    FavoritesModule(),
   ];
 
   @override

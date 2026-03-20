@@ -3,7 +3,6 @@ import 'package:address_app/features/home/presentation/controller/home_controlle
 import 'package:address_app/features/home/presentation/pages/widgets/tag_widget.dart';
 import 'package:address_app/shared/ui/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 void showAddressModal(
   BuildContext context,
@@ -148,7 +147,8 @@ void showAddressModal(
                   ),
                 ),
                 onPressed: () {
-                  Modular.to.pop();
+                  controller.onSaveAddress(address);
+                  Navigator.pop(context);
                 },
                 child: SizedBox(
                   width: double.infinity,

@@ -68,7 +68,7 @@ class AppBottomNavigationBarWidget extends StatelessWidget {
               Modular.to.navigate('/');
               break;
             case 1:
-              Modular.to.navigate('/favorites');
+              Modular.to.navigate('/favorites/');
               break;
           }
         },
