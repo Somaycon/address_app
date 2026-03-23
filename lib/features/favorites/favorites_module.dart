@@ -28,7 +28,7 @@ class FavoritesModule extends Module {
   @override
   void routes(RouteManager r) {
     r.child(
-      '/favorites/',
+      '/',
       child: (context) => FavoritesPage(),
     );
     super.routes(r);
