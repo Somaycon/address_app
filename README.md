@@ -1,5 +1,11 @@
 # Address App
 
+![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?logo=dart&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-3DDC84)
+![Architecture](https://img.shields.io/badge/Architecture-Feature--First%20%7C%20Layered-4A90E2)
+![API](https://img.shields.io/badge/API-ViaCEP-orange)
+
 Address App is a Flutter application that looks up Brazilian postal codes (CEP), shows address details, and lets users save favorite addresses locally.
 
 The project follows a feature-first and layered architecture, using Flutter Modular for routing/dependency injection, Dio for HTTP calls, and SharedPreferences for local persistence.
