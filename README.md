@@ -18,6 +18,15 @@ The project follows a feature-first and layered architecture, using Flutter Modu
 - Persist favorites locally with SharedPreferences
 - Navigate between Home and Favorites modules
 
+## Screenshots
+
+<p align="center">
+	<img src="screenshots/Captura%20de%20tela%202026-03-23%20084321.png" alt="Home screen" width="220" />
+	<img src="screenshots/Captura%20de%20tela%202026-03-23%20084403.png" alt="Address details" width="220" />
+	<img src="screenshots/Captura%20de%20tela%202026-03-23%20084420.png" alt="Favorites list" width="220" />
+	<img src="screenshots/Captura%20de%20tela%202026-03-23%20084719.png" alt="Favorites empty state" width="220" />
+</p>
+
 ## Tech Stack
 
 - Flutter (Dart)
