@@ -2,7 +2,7 @@
 
 ![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter&logoColor=white)
 ![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?logo=dart&logoColor=white)
-![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-3DDC84)
+![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS%20%7C%20Web-3DDC84)
 ![Architecture](https://img.shields.io/badge/Architecture-Feature--First%20%7C%20Layered-4A90E2)
 ![API](https://img.shields.io/badge/API-ViaCEP-orange)
 
@@ -99,6 +99,39 @@ flutter run
 ```bash
 flutter test
 ```
+
+## Web (GitHub Pages)
+
+This project can be automatically deployed to GitHub Pages using GitHub Actions.
+
+### Workflow file
+
+- `.github/workflows/deploy-pages.yml`
+
+### Deploy steps
+
+1. Commit and push changes to `main`:
+
+```bash
+git add .
+git commit -m "ci: configure github pages deployment"
+git push origin main
+```
+
+2. In GitHub, open the repository settings:
+- `Settings` -> `Pages`
+- In `Build and deployment`, set `Source` to `GitHub Actions`
+
+3. Open the `Actions` tab and wait for the workflow `Deploy Flutter Web to GitHub Pages` to finish.
+
+### Published URL
+
+- `https://somaycon.github.io/address_app/`
+
+### Important
+
+- The workflow builds with `--base-href /address_app/`, which is required for project pages.
+- If the repository name changes, update the `--base-href` value in the workflow accordingly.
 
 ## Current Test Coverage
 
